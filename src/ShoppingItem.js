@@ -9,10 +9,10 @@ class ShoppingItem extends React.Component {
   render() {
     return (
       <li>
-        <input type="checkbox" checked={this.props.done} onClick={this.props.checkItem} />
-        <span>{this.props.title}</span>
+        <input type="checkbox" checked={this.props.done} onClick={() => this.props.checkItem(this.props.id)} />
+        <span>{this.props.name}</span>
         <span> / {this.props.price} Yen </span>
-        <a href="#" onClick={this.props.deleteItem}>
+        <a href="#" onClick={() => this.props.deleteItem(this.props.id)}>
           delete
         </a>
         <p>{this.props.desc}</p>
@@ -22,7 +22,8 @@ class ShoppingItem extends React.Component {
 }
 
 ShoppingItem.propTypes = {
-  title: PropTypes.string,
+  id: PropTypes.number,
+  name: PropTypes.string,
   price: PropTypes.number,
   desc: PropTypes.string,
   done: PropTypes.bool,

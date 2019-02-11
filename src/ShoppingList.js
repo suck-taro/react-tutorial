@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import ShoppingItem from "./ShoppingItem";
 
 class ShoppingList extends React.Component {
@@ -7,7 +6,7 @@ class ShoppingList extends React.Component {
     super(props);
     this.state = {
       items: [],
-      textTitle: "",
+      textName: "",
       textDescription: "",
       textPrice: 0
     };
@@ -18,7 +17,7 @@ class ShoppingList extends React.Component {
   addItem() {
     const list = this.state.items;
     list.push({
-      title: this.state.textTitle,
+      name: this.state.textName,
       desc: this.state.textDescription,
       price: this.state.textPrice,
       done: false
@@ -35,23 +34,31 @@ class ShoppingList extends React.Component {
   checkItem(i) {
     const list = this.state.items;
     const item = list[i];
-    item.done = ! item.done;
-    this.setState({items:list})
+    item.done = !item.done;
+    this.setState({ items: list });
   }
 
   render() {
     const itemList = this.state.items.map((item, i) => {
-      return <ShoppingItem key={i} deleteItem={this.deleteItem} checkItem={this.checkItem} {...item} />;
+      return (
+        <ShoppingItem
+          key={i}
+          id={i}
+          deleteItem={this.deleteItem}
+          checkItem={this.checkItem}
+          {...item}
+        />
+      );
     });
 
     return (
       <div>
         <div>
-          <label>Title</label>
+          <label>Name</label>
           <input
             type="text"
-            value={this.state.textTitle}
-            onChange={e => this.setState({ textTitle: e.target.value })}
+            value={this.state.textName}
+            onChange={e => this.setState({ textName: e.target.value })}
           />
         </div>
         <div>
@@ -83,9 +90,5 @@ class ShoppingList extends React.Component {
     );
   }
 }
-
-ShoppingList.propTypes = {
-  items: PropTypes.arrayOf(ShoppingItem.propTypes)
-};
 
 export default ShoppingList;
