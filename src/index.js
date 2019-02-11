@@ -1,31 +1,10 @@
-    import React from "react";
-    import ReactDOM from "react-dom";
-    import PropTypes from "prop-types";
+import React from "react";
+import ReactDOM from "react-dom";
+import ShoppingList from "./ShoppingList";
 
-    class Parent extends React.Component {
-      render() {
-        return (
-          <div>
-            <Children value={'World'} />
-            <Children value={'世界'} />
-          </div>
-        );
-      }
-    }
-
-    class Children extends React.Component {
-      render() {
-        return <h2>Hello {this.props.value}</h2>;
-      }
-    }
-
-    Children.propTypes = {
-      value: PropTypes.string
-    };
-
-    ReactDOM.render(
-      <div>
-        <Parent />
-      </div>,
-      document.getElementById("root")
-    );
+ReactDOM.render(
+  <div>
+    <ShoppingList />
+  </div>,
+  document.getElementById("root")
+);
